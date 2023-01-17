@@ -1,0 +1,5 @@
+[package]
+name = "mul_rs_win_dynamic"
+version = "0.1.0"
+edition = "2021"
+
