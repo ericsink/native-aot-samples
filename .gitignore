@@ -1,0 +1,6 @@
+bin
+obj
+*.dll
+/mul_rs_win_dynamic/Cargo.lock
+/mul_rs_win_dynamic/target
+
