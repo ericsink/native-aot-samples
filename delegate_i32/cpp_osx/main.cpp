@@ -16,13 +16,21 @@ int divisible_by_42(int x)
 int main()
 {
     {
-        int32_t total = map_sum_with_funcptr(1000, divisible_by_42);
+        int32_t total = map_sum_with_funcptr(
+            1000, 
+            divisible_by_42
+            );
         printf("%d\n", total);
     }
 
     {
-        intptr_t del = create_delegate(divisible_by_42);
-        int32_t total = map_sum_with_delegate(1000, del);
+        intptr_t del = create_delegate(
+            divisible_by_42
+            );
+        int32_t total = map_sum_with_delegate(
+            1000, 
+            del
+            );
         printf("%d\n", total);
     }
 

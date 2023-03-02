@@ -5,7 +5,10 @@ using System.Runtime.InteropServices;
 public class Class1
 {
     public delegate int MapOne(int x);
-    public static int MapSum(int n, MapOne f)
+    public static int MapSum(
+        int n, 
+        MapOne f
+        )
     {
         var sofar = 0;
         for (var i=0; i<n; i++)
@@ -15,8 +18,24 @@ public class Class1
         return sofar;
     }
 
+    public static int CountDivisibleBy42(int n)
+    {
+        return MapSum(n, x => ((x % 42) == 0) ? 1 : 0);
+    }
+
+    public static int count_files_with_e(string path)
+    {
+        return System.IO.Directory.GetFiles(path)
+            .Where(x => x.Contains("e"))
+            .Count()
+            ;
+    }
+
     [UnmanagedCallersOnly(EntryPoint = "map_sum_with_funcptr")]
-    public static unsafe int MapSumWithFuncPtr(int n, delegate* unmanaged<int,int> f)
+    public static unsafe int MapSumWithFuncPtr(
+        int n, 
+        delegate* unmanaged<int,int> f
+        )
     {
         var sofar = 0;
         for (var i=0; i<n; i++)
@@ -40,7 +59,9 @@ public class Class1
     }
 
     [UnmanagedCallersOnly(EntryPoint = "create_delegate")]
-    public static unsafe IntPtr CreateDelegate(delegate* unmanaged<int,int> funcptr)
+    public static unsafe IntPtr CreateDelegate(
+        delegate* unmanaged<int,int> funcptr
+        )
     {
         try
         {
@@ -59,7 +80,10 @@ public class Class1
     }
 
     [UnmanagedCallersOnly(EntryPoint = "map_sum_with_delegate")]
-    public static int MapSumWithDelegate(int n, IntPtr del)
+    public static int MapSumWithDelegate(
+        int n, 
+        IntPtr del
+        )
     {
         var actualDelegate = (MapOne) GCHandle.FromIntPtr(del).Target;
         return MapSum(n, actualDelegate);
